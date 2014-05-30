@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PhoneHomeSample.Models.Record>
+
+@{
+    ViewBag.Title = "Phone Home reports";
+}
+
+<h2>Phone Home reports</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumOff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastReported)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumOff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastReported)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

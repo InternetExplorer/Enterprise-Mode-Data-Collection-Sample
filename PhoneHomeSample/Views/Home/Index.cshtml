@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Welcome to the sample";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                This sample is provided as-is to get you started collecting data about Enterprise Mode for IE11 usage within your organization.
+                It is intended to be used as a starting point to building your own data collection solution around Enterprise Mode.
+            </p>
+            <p>
+                To set up data collection, turn on Enterprise Mode logging either through group policy or by directly setting the Enable registry key.
+                Set the Enable setting to [deployment url]/api/records/ and data will automatically be sent to this page.
+            </p>
+            <p>
+                To learn more about setting up logging for Enterprise Mode, please see <a href="http://go.microsoft.com/fwlink/?LinkId=398722">this article</a> on technet.
+            </p>
+            <p>
+                @Html.ActionLink("Click here to return to the list", "Index", "List")
+            </p>
+        </div>
+    </section>
+}

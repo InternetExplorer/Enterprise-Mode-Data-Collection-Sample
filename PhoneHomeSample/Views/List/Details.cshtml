@@ -1,0 +1,43 @@
+﻿@model PhoneHomeSample.Models.Record
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Record</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UrlName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UrlName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumOff)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumOff)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastReported)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastReported)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
