@@ -6,10 +6,13 @@
 
 <h2>Phone Home reports</h2>
 
-<table>
+<table width="1200px">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UrlName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Difference)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NumOn)
@@ -27,6 +30,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UrlName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Difference)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumOn)

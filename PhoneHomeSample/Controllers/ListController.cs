@@ -18,7 +18,7 @@ namespace PhoneHomeSample.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Records.ToList());
+            return View(db.Records.ToList().OrderByDescending(r => r.Difference));
         }
 
         //

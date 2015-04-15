@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,18 +13,31 @@ namespace PhoneHomeSample.Models
     public class Record
     {
         public int ID { get; set; }
+
+        [Display(Name = "URL")]
         public string UrlName { get; set; }
+
         /// <summary>
         /// Number of "On" requests for Enterprise Mode for the URL
         /// </summary>
+        [Display(Name = "Enterprise Mode ON")]
         public int NumOn { get; set; }
+        
         /// <summary>
         /// Number of "Off" requests for Enterprise Mode for the URL
         /// </summary>
+        [Display(Name = "Enterprise Mode OFF")]
         public int NumOff { get; set; }
+
+
+        [NotMapped]
+        public int Difference { get { return Math.Abs(NumOff - NumOn); } }
+
         /// <summary>
         /// The date of the last time a user toggled Enterprise Mode on or off for the website
         /// </summary>
+        [Display(Name = "Last Reported")]
+        [DataType(DataType.Date)]
         public DateTime LastReported { get; set; }
     }
 
@@ -31,11 +46,11 @@ namespace PhoneHomeSample.Models
     /// </summary>
     public class Report
     {
-        public int ReportID { get; set; }
         /// <summary>
         /// The URL in the report
         /// </summary>
         public string URL { get; set; }
+
         /// <summary>
         /// Direction of the toggle, e.g. On or Off
         /// </summary>

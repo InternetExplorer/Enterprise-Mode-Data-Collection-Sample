@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Welcome to the sample";
+    ViewBag.Title = "Enterprise Mode Phone Home Sample";
 }
 @section featured {
     <section class="featured">
@@ -17,10 +17,13 @@
                 Set the Enable setting to [deployment url]/api/records/ and data will automatically be sent to this page.
             </p>
             <p>
+                The main code to implement the API is located inside this project at APIs\RecordsController.cs
+            </p>
+            <p>
                 To learn more about setting up logging for Enterprise Mode, please see <a href="http://go.microsoft.com/fwlink/?LinkId=398722">this article</a> on technet.
             </p>
             <p>
-                @Html.ActionLink("Click here to return to the list", "Index", "List")
+                @Html.ActionLink("Click here to see the collected data", "Index", "List")
             </p>
         </div>
     </section>
