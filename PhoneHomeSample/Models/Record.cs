@@ -20,18 +20,19 @@ namespace PhoneHomeSample.Models
         /// <summary>
         /// Number of "On" requests for Enterprise Mode for the URL
         /// </summary>
-        [Display(Name = "Enterprise Mode ON")]
+        [Display(Name = "Enterprise Mode turned ON")]
         public int NumOn { get; set; }
         
         /// <summary>
         /// Number of "Off" requests for Enterprise Mode for the URL
         /// </summary>
-        [Display(Name = "Enterprise Mode OFF")]
+        [Display(Name = "Enterprise Mode turned OFF")]
         public int NumOff { get; set; }
 
 
         [NotMapped]
-        public int Difference { get { return Math.Abs(NumOff - NumOn); } }
+        [Display(Name = "Delta")]
+        public int Delta { get { return (NumOn - NumOff); } }
 
         /// <summary>
         /// The date of the last time a user toggled Enterprise Mode on or off for the website
