@@ -13,6 +13,12 @@
 
 <h2>Enterprise Mode Data Collection Report</h2>
 
+<p>Set threshold and number of days data to look at.</p>
+
+<span>Threshold: </span> <input id="threshold" type="number" value="5" style="width: 50px" />
+<span>Number of days data to consider: </span> <input id="numDays" type="number" value="30" style="width: 50px" />
+<button onclick="updateTable();" style="margin-bottom: 30px;">Update table</button>
+
 <table width="1200px" id="mainTable">
     <thead>
         <tr>
@@ -40,7 +46,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="itemPhoneHome@(item.ID)">
+            <tr class="recordPhoneHome" data-days-difference="@DateTime.Now.Subtract(item.LastReported).Days" data-delta="@item.Delta">
                 <td>
                     @Html.DisplayFor(modelItem => item.UrlName)
                 </td>
@@ -56,21 +62,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.LastReported)
                 </td>
-                <td>
-                    @if (item.Delta > 5)
-                    {
-                        <span>Add to site list</span>
-                        <script>
-                            document.getElementById("itemPhoneHome" + @(item.ID)).style.background = "#99FF99";
-                        </script>
-                    }
-                    else if (item.Delta < -5)
-                    {
-                        <span>Remove from site list</span>
-                        <script>
-                            document.getElementById("itemPhoneHome" + @(item.ID)).style.background = "#FFFF99";
-                        </script>
-                    }
+                <td class="recommendation">
                 </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
@@ -85,4 +77,38 @@
     $(document).ready( function () {
         $('#mainTable').DataTable();
     } );
+
+    function updateTable() {
+        var listOfTRs = document.getElementsByClassName("recordPhoneHome");
+        var numDaysValue = Number(numDays.value);
+        var thresholdValue = Number(threshold.value);
+
+        for(var i=0; i< listOfTRs.length; i++){
+            var itemTR = listOfTRs[i];
+
+            if (Number(itemTR.getAttribute("data-days-difference")) > numDaysValue) {
+                itemTR.style.display = "none";
+            }
+            else
+            {
+                itemTR.style.display = "";
+            }
+
+            var dataDelta = Number(itemTR.getAttribute("data-delta"));
+            if (dataDelta >= thresholdValue) {
+                itemTR.style.background = "#99FF99";
+                itemTR.getElementsByClassName("recommendation")[0].innerHTML = "Add to site list";
+            }
+            else if (dataDelta <= ((-1) * thresholdValue)) {
+                itemTR.style.background = "#FFFF99";
+                itemTR.getElementsByClassName("recommendation")[0].innerHTML = "Remove from site list";
+            }
+            else {
+                itemTR.getElementsByClassName("recommendation")[0].innerHTML = "";
+                itemTR.style.background = "";
+            }
+        }
+    }
+
+    updateTable();
 </script>
