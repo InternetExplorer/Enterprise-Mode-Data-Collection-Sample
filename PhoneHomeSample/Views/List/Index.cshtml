@@ -13,11 +13,12 @@
 
 <h2>Enterprise Mode Data Collection Report</h2>
 
-<p>Set threshold and number of days data to look at.</p>
+<h4>Filter</h4>
 
-<span>Threshold: </span> <input id="threshold" type="number" value="5" style="width: 50px" />
-<span>Number of days data to consider: </span> <input id="numDays" type="number" value="30" style="width: 50px" />
-<button onclick="updateTable();" style="margin-bottom: 30px;">Update table</button>
+<span>Difference between Enterprise Mode ONs and OFFs >= </span> <input id="threshold" type="number" value="5" style="width: 50px" />
+<span>Number of days to consider: </span> <input id="numDays" type="number" value="30" style="width: 50px" />
+<button onclick="updateTable();">Update table</button>
+<hr style="margin-bottom: 30px;" />
 
 <table width="1200px" id="mainTable">
     <thead>
@@ -62,8 +63,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.LastReported)
                 </td>
-                <td class="recommendation">
-                </td>
+                <td class="recommendation"></td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })
